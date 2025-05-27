@@ -9,7 +9,7 @@
 #define CONTRACT_ADDRESS   "Contract Address"
 #define PERCENTAGE         "%"
 #define NBGL_MSG           "Message"
-#if defined(TARGET_STAX) || defined(TARGET_FLEX)
+#ifdef SCREEN_SIZE_WALLET
 #define PEER_PUBKEY        "Node Operation Public Key"
 #define PEER_INCENTIVE     "Incentive Sharing Ratio (Node)"
 #define USER_INCENTIVE     "Incentive Sharing Ratio (User)"

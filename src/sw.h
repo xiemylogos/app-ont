@@ -68,3 +68,11 @@
  * Status word for invalid transaction.
  */
 #define SW_INVALID_TRANSACTION 0xB00A
+/**
+ * Status word for fail of msg hash.
+ */
+#define SW_HASH_FAILED 0xB00B
+/**
+ * Status word for invalid path.
+ */
+#define SW_INVALID_PATH 0xB00C

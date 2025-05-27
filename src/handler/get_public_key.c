@@ -45,7 +45,7 @@ int handler_get_public_key(buffer_t *cdata, bool display) {
     }
 
     if (!is_valid_bip44_prefix(G_context.bip32_path, G_context.bip32_path_len)) {
-        return io_send_sw(SW_WRONG_DATA_LENGTH);
+        return io_send_sw(SW_INVALID_PATH);
     }
 
     cx_err_t error = bip32_derive_get_pubkey_256(CX_CURVE_256R1,

@@ -44,7 +44,7 @@ int handler_sign_message(buffer_t *cdata, uint8_t chunk, bool more) {
             return io_send_sw(SW_WRONG_DATA_LENGTH);
         }
         if (!is_valid_bip44_prefix(G_context.bip32_path, G_context.bip32_path_len)) {
-            return io_send_sw(SW_WRONG_DATA_LENGTH);
+            return io_send_sw(SW_INVALID_PATH);
         }
         return io_send_sw(SW_OK);
     } else {
@@ -82,7 +82,7 @@ int handler_sign_message(buffer_t *cdata, uint8_t chunk, bool more) {
                                G_context.msg_info.raw_msg,
                                G_context.msg_info.raw_msg_len) != CX_OK ||
                 cx_hash_final((cx_hash_t *) &cx_sha256, G_context.msg_info.m_hash) != CX_OK) {
-                return io_send_sw(SW_WRONG_DATA_LENGTH);  // todo, another sw
+                return io_send_sw(SW_HASH_FAILED);
             }
 
             PRINTF("Hash: %.*H\n", sizeof(G_context.msg_info.m_hash), G_context.msg_info.m_hash);

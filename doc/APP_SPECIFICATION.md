@@ -200,3 +200,5 @@ The following standard Status Words are returned for all APDUs.
 |   B008   | SW_SIGNATURE_FAIL           | Signature of data(tx or personal msg) failed            |
 |   B009   | SW_PERSONAL_MSG_PARSING_FAIL  | Failed to parse personal msg                            |
 |   B00A   | SW_INVALID_TRANSACTION  | Invalid transaction                              |
+|   B00B   | SW_HASH_FAILED  | Msg hash failed                              |
+|   B00C   | SW_INVALID_PATH  | Invalid path                              |

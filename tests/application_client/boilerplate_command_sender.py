@@ -48,6 +48,8 @@ class Errors(IntEnum):
     SW_SIGNATURE_FAIL          = 0xB008
     SW_PERSONAL_MSG_PARSING_FAIL = 0xB009
     SW_INVALID_TRANSACTION     = 0xB00A
+    SW_HASH_FAILED            = 0xB00B
+    SW_INVALID_PATH           = 0xB00C  
 
 
 def split_message(message: bytes, max_size: int) -> List[bytes]:
