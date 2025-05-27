@@ -218,7 +218,13 @@ bool parse_method_params(buffer_t *buf,
     *params_num = 0;
 
     for (; *params != PARAM_END; ++params) {
+        if (*params_num >= PARAMETERS_MAX_NUM) {
+            return false;
+        }
         (*params_num)++;
+        if (cur >= PARAMETERS_MAX_NUM) {
+            return false;
+        }
         switch (*params) {
             case PARAM_ADDR:
                 if (!parse_address(buf,

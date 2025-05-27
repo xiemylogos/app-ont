@@ -230,9 +230,15 @@ static parser_status_e transaction_deserialize_contract(buffer_t *buf, transacti
     size_t os = buf->offset;
     switch (tx->header.tx_type) {
         case 0xd1:
+            if(!buffer_can_read(buf, ARRAY_LENGTH(OPCODE_END) + ADDRESS_SCRIPT_HASH_LEN + 1)) {
+                return PARSING_BYTECODE_WRONG;
+            }
             if (buf->ptr[buf->size - ARRAY_LENGTH(OPCODE_END) - ADDRESS_SCRIPT_HASH_LEN - 1] !=
                 OPCODE_APPCALL[0]) {  //'n' for the native contract
                 tx->contract.type = NATIVE_CONTRACT;
+                if(!buffer_can_read(buf, NATIVE_CONTRACT_CONSTANT_LENGTH)) {
+                    return PARSING_BYTECODE_WRONG;
+                }
                 if ((!buffer_seek_set(buf, buf->size - NATIVE_CONTRACT_CONSTANT_LENGTH) ||
                      !parse_address(buf, true, &(tx->contract.addr)) ||
                      !parse_check_constant(buf, OPCODE_SYSCALL, ARRAY_LENGTH(OPCODE_SYSCALL)) ||
