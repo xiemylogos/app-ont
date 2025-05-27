@@ -106,7 +106,9 @@ static bool parse_pk_amount_pairs(buffer_t *buf, tx_parameter_t *pairs, size_t *
         !parse_check_constant(buf, OPCODE_PARAM_END, ARRAY_LENGTH(OPCODE_PARAM_END))) {
         return false;
     }
-
+    if (*cur + (pks_num * 2 + 1) > PARAMETERS_MAX_NUM) {
+        return false;
+    }
     // Check if pks_num will cause out-of-bounds access
     if (pks_num > (PARAMETERS_MAX_NUM - 1) / 2) { // Need pks_num * 2 + 1 <= PARAMETERS_MAX_NUM
         return false;
@@ -189,7 +191,9 @@ bool parse_trasfer_state(buffer_t *buf, tx_parameter_t *transfer_state, size_t *
     LEDGER_ASSERT(buf != NULL, "NULL buf");
     LEDGER_ASSERT(transfer_state != NULL, "NULL transfer_state");
     LEDGER_ASSERT(cur != NULL, "NULL cur");
-
+    if (*cur + 3 > PARAMETERS_MAX_NUM) {
+        return false;
+    }
     if (!parse_check_constant(buf, OPCODE_ST_BEGIN, ARRAY_LENGTH(OPCODE_ST_BEGIN)) ||
         !parse_address(buf, true, &transfer_state[0]) ||
         !parse_check_constant(buf, OPCODE_PARAM_END, ARRAY_LENGTH(OPCODE_PARAM_END)) ||
