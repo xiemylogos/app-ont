@@ -45,7 +45,8 @@ set(APP_SOURCES
     ${BOLOS_SDK}/lib_standard_app/write.c
     ${BOLOS_SDK}/lib_standard_app/bip32.c
     ${BOLOS_SDK}/lib_standard_app/buffer.c
-     ${BOLOS_SDK}/src/syscalls.c
+    ${BOLOS_SDK}/lib_standard_app/format.c
+    ${BOLOS_SDK}/src/syscalls.c
     ${BOLOS_SDK}/src/ledger_assert.c
     ${APP_SRC_DIR}/transaction/deserialize.c
     ${APP_SRC_DIR}/transaction/deserialize.h
