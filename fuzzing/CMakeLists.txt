@@ -65,9 +65,8 @@ add_executable(fuzz_tx_parser
     ${APP_SOURCES}
 )
 
-# Add sanitizer flags (let clang auto-detect runtime paths)
-target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address,undefined -fno-sanitize-recover=undefined)
-target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address,undefined -fno-sanitize-recover=undefined)
-
+# Use only ASan + fuzzer
+target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
+target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
 # Include project headers
 target_include_directories(fuzz_tx_parser PUBLIC ../src)
