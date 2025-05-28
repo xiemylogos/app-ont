@@ -1,9 +1,6 @@
 from io import BytesIO
 from typing import Union
 
-from .boilerplate_utils import read
-
-
 class PersonalMsgError(Exception):
     pass
 
@@ -24,4 +21,3 @@ class PersonalMsg:
         buf: BytesIO = BytesIO(hexa) if isinstance(hexa, bytes) else hexa
         personalmsg: str = buf.read().decode('utf-8')  # Use buf.read() directly
         return cls(personalmsg=personalmsg)
-
