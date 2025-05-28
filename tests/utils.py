@@ -19,13 +19,13 @@ def check_signature_validity(public_key: bytes, signature: bytes, message: bytes
                      hashfunc=sha256,
                      sigdecode=sigdecode_der)
 
+
 def verify_name(name: str) -> None:
     """Verify the app name, based on defines in Makefile
 
     Args:
         name (str): Name to be checked
     """
-
     name_str = ""
     lines = _read_makefile()
     name_re = re.compile(r"^APPNAME\s?=\s?\"?(?P<val>\w+)\"?", re.I)
@@ -43,7 +43,6 @@ def verify_version(version: str) -> None:
     Args:
         Version (str): Version to be checked
     """
-
     vers_dict = {}
     vers_str = ""
     lines = _read_makefile()
@@ -62,12 +61,12 @@ def verify_version(version: str) -> None:
 
 def _read_makefile() -> List[str]:
     """Read lines from the parent Makefile """
-
     parent = Path(__file__).parent.parent.resolve()
     makefile = f"{parent}/Makefile"
     with open(makefile, "r", encoding="utf-8") as f_p:
         lines = f_p.readlines()
     return lines
+
 
 def checkpersonal_signature_validity(public_key: bytes, signature: bytes, message: bytes) -> bool:
     pk: VerifyingKey = VerifyingKey.from_string(
@@ -91,12 +90,12 @@ def hex_to_bytes(hex_str: str) -> bytes:
     Returns:
         bytes: The corresponding bytes object.
     """
-    # Remove any whitespace and ensure the string length is even
     hex_str = hex_str.replace(" ", "").strip()
     if len(hex_str) % 2 != 0:
         raise ValueError("Hex string must have an even number of characters")
     return bytes.fromhex(hex_str)
 
-def int_byte(value: int) ->bytes:
+
+def int_byte(value: int) -> bytes:
     byte_length = (value.bit_length() + 7) // 8
     return value.to_bytes(byte_length, byteorder='little')
