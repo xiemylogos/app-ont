@@ -49,7 +49,7 @@ static bool process_precision(const char *input, int precision, char *output, si
     size_t len = strlen(input);
     if (len == 0) {  // Handle empty string
         if (output_len > 1)
-            strlcpy(output, "0", sizeof(output));
+            snprintf(output, output_len, "0");
         else if (output_len > 0)
             output[0] = '\0';
         return false;
