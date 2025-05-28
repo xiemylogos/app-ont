@@ -32,7 +32,7 @@ include_directories(
     "${CMAKE_CURRENT_SOURCE_DIR}/../src/transaction"
 )
 
-# Optimization and debug
+# Optimization and debug flags
 add_compile_options(-g -ggdb2 -O3)
 
 # Fuzz source files
@@ -47,14 +47,9 @@ set(APP_SOURCES
     ${BOLOS_SDK}/lib_standard_app/format.c
     ${BOLOS_SDK}/src/ledger_assert.c
     ${APP_SRC_DIR}/transaction/deserialize.c
-    ${APP_SRC_DIR}/transaction/deserialize.h
     ${APP_SRC_DIR}/transaction/contract.c
-    ${APP_SRC_DIR}/transaction/contract.h
     ${APP_SRC_DIR}/transaction/parse.c
-    ${APP_SRC_DIR}/transaction/parse.h
     ${APP_SRC_DIR}/transaction/utils.c
-    ${APP_SRC_DIR}/transaction/utils.h
-    ${APP_SRC_DIR}/transaction/tx_types.h
     mock_syscalls.c
 )
 
@@ -64,18 +59,14 @@ add_executable(fuzz_tx_parser
     ${APP_SOURCES}
 )
 
-# Detect sanitizer type from environment (e.g., CIFUZZ_SANITIZER=memory or address)
-if(DEFINED ENV{CIFUZZ_SANITIZER})
-    set(SANITIZER $ENV{CIFUZZ_SANITIZER})
+# Add sanitizer flags only in local builds
+if(NOT DEFINED ENV{CIFUZZ})
+    message(STATUS "Local build: enabling -fsanitize=fuzzer,address")
+    target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
+    target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
 else()
-    set(SANITIZER "address") # Default fallback
+    message(STATUS "CI fuzzing build detected, sanitizer flags controlled externally.")
 endif()
-
-message(STATUS "Using sanitizer: ${SANITIZER}")
-
-# Set sanitizer flags
-target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,${SANITIZER})
-target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,${SANITIZER})
 
 # Include project headers
 target_include_directories(fuzz_tx_parser PUBLIC ../src)
