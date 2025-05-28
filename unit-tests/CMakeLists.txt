@@ -37,10 +37,20 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 endif()
 
 add_compile_definitions(TEST)
+add_compile_definitions(HAVE_HASH
+    HAVE_SHA256
+    HAVE_RIPEMD160
+    HAVE_AES)
 
 include_directories(../src)
 include_directories(../src/transaction)
 include_directories($ENV{BOLOS_SDK}/lib_standard_app)
+include_directories($ENV{BOLOS_SDK}/include)
+include_directories($ENV{BOLOS_SDK}/target/flex/include)
+include_directories($ENV{BOLOS_SDK}/target/stax/include)
+include_directories($ENV{BOLOS_SDK}/target/nanox/include)
+include_directories($ENV{BOLOS_SDK}/target/nanos2/include)
+include_directories($ENV{BOLOS_SDK}/lib_cxng/include)
 
 add_executable(test_tx_parser test_tx_parser.c)
 # add_executable(test_tx_utils test_tx_utils.c)
