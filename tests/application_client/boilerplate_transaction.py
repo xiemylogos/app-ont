@@ -10,12 +10,11 @@ class TransactionError(Exception):
 
 
 class Transaction:
-    def __init__(self,rawtx: str) -> None:
+    def __init__(self, rawtx: str) -> None:
         self.txinfo: str = rawtx
 
     def serialize(self) -> bytes:
         return hex_to_bytes(self.txinfo)
-
 
     @classmethod
     def from_bytes(cls, hexa: Union[bytes, BytesIO]):
@@ -23,5 +22,6 @@ class Transaction:
 
         txinfo_len: int = read_varint(buf)
         txinfo: bytes = read(buf, txinfo_len)
+        rawtx: str = txinfo.hex()  # Convert bytes to hex string
 
-        return cls(txinfo=txinfo)
+        return cls(rawtx=rawtx)  # Pass rawtx to the constructor

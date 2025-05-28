@@ -22,7 +22,6 @@ class PersonalMsg:
     @classmethod
     def from_bytes(cls, hexa: Union[bytes, BytesIO]):
         buf: BytesIO = BytesIO(hexa) if isinstance(hexa, bytes) else hexa
-
-
-        personalmsg: str = read(buf).decode('utf-8')
+        personalmsg: str = buf.read().decode('utf-8')  # Use buf.read() directly
         return cls(personalmsg=personalmsg)
+
