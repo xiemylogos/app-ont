@@ -2,7 +2,7 @@ from io import BytesIO
 from typing import Union
 from utils import hex_to_bytes
 
-from .boilerplate_utils import read, read_uint, read_varint, write_varint, UINT64_MAX
+from .boilerplate_utils import read, read_varint
 
 
 class TransactionError(Exception):
@@ -10,8 +10,7 @@ class TransactionError(Exception):
 
 
 class Transaction:
-    def __init__(self,
-                 rawtx: str) -> None:
+    def __init__(self,rawtx: str) -> None:
         self.txinfo: str = rawtx
 
     def serialize(self) -> bytes:

@@ -2,10 +2,8 @@ from pathlib import Path
 from typing import List
 import re
 from Crypto.Hash import keccak
-from _sha256 import sha256
 from hashlib import sha256
 from ecdsa.curves import NIST256p
-from ecdsa.curves import SECP256k1
 from ecdsa.keys import VerifyingKey
 from ecdsa.util import sigdecode_der
 
