@@ -2,9 +2,9 @@ from pathlib import Path
 from typing import List
 import re
 from hashlib import sha256
-from ecdsa.curves import NIST256p
-from ecdsa.keys import VerifyingKey
-from ecdsa.util import sigdecode_der
+from ecdsa.curves import NIST256p  # type: ignore
+from ecdsa.keys import VerifyingKey  # type: ignore
+from ecdsa.util import sigdecode_der  # type: ignore
 
 
 # Check if a signature of a given message is valid
