@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(OntFuzzer VERSION 2.0.0 LANGUAGES C)
 
-
 set(CMAKE_C_STANDARD 11)
 
 # BOLOS SDK path from environment
@@ -65,8 +64,18 @@ add_executable(fuzz_tx_parser
     ${APP_SOURCES}
 )
 
-# Use only ASan + fuzzer
-target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
-target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
+# Detect sanitizer type from environment (e.g., CIFUZZ_SANITIZER=memory or address)
+if(DEFINED ENV{CIFUZZ_SANITIZER})
+    set(SANITIZER $ENV{CIFUZZ_SANITIZER})
+else()
+    set(SANITIZER "address") # Default fallback
+endif()
+
+message(STATUS "Using sanitizer: ${SANITIZER}")
+
+# Set sanitizer flags
+target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,${SANITIZER})
+target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,${SANITIZER})
+
 # Include project headers
 target_include_directories(fuzz_tx_parser PUBLIC ../src)
