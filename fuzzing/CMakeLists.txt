@@ -55,7 +55,7 @@ set(APP_SOURCES
 
 # Fuzzer target
 add_executable(fuzz_tx_parser
-    fuzz_tx_parser.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/fuzz_tx_parser.c
     ${APP_SOURCES}
 )
 
