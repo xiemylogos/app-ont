@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(OntFuzzer VERSION 2.0.0 LANGUAGES C)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_COMPILER clang) # Ensure Clang is used
 
 # BOLOS SDK path from environment
 set(BOLOS_SDK $ENV{BOLOS_SDK})
@@ -59,14 +60,19 @@ add_executable(fuzz_tx_parser
     ${APP_SOURCES}
 )
 
-# Add sanitizer flags only in local builds
+# Add sanitizer flags
 if(NOT DEFINED ENV{CIFUZZ})
     message(STATUS "Local build: enabling -fsanitize=fuzzer,address")
     target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
     target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer,address)
 else()
-    message(STATUS "CI fuzzing build detected, sanitizer flags controlled externally.")
+    message(STATUS "CI fuzzing build: enabling -fsanitize=fuzzer")
+    target_compile_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer)
+    target_link_options(fuzz_tx_parser PUBLIC -fsanitize=fuzzer)
 endif()
 
 # Include project headers
 target_include_directories(fuzz_tx_parser PUBLIC ../src)
+
+# Enable verbose output for debugging
+set(CMAKE_VERBOSE_MAKEFILE ON)
