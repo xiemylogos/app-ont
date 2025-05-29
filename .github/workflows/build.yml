@@ -11,6 +11,7 @@ on:
       - master
       - main
       - develop
+      - for_new_models
   pull_request:
 
 jobs:

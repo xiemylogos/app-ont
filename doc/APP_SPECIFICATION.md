@@ -184,6 +184,7 @@ The following standard Status Words are returned for all APDUs.
 
 | SW       | SW name                     | Description                                           |
 | ---      | ---                         | ---                                                   |
+|   9000   | SW_OK                  | success                                     |
 |   6985   | SW_DENY                  | Rejected by user                                      |
 |   6A86   | SW_WRONG_P1P2               | Either P1 or P2 is incorrect                          |
 |   6A87   | SW_WRONG_DATA_LENGTH        | Lc or minimum APDU length is incorrect                |
@@ -200,5 +201,4 @@ The following standard Status Words are returned for all APDUs.
 |   B008   | SW_SIGNATURE_FAIL           | Signature of data(tx or personal msg) failed            |
 |   B009   | SW_PERSONAL_MSG_PARSING_FAIL  | Failed to parse personal msg                            |
 |   B00A   | SW_INVALID_TRANSACTION  | Invalid transaction                              |
-|   B00B   | SW_HASH_FAILED  | Msg hash failed                              |
-|   B00C   | SW_INVALID_PATH  | Invalid path                              |
+|   B00B   | SW_INVALID_PATH  | Invalid path                              |

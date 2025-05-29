@@ -12,15 +12,6 @@
 #include "transaction/parse.h"
 #include "types.h"
 
-size_t strlcpy(char *dst, const char *src, size_t size) {
-    size_t src_len = strlen(src);
-    if (size == 0) return src_len;
-    size_t copy_len = (src_len >= size) ? size - 1 : src_len;
-    memcpy(dst, src, copy_len);
-    dst[copy_len] = '\0';
-    return src_len;
-}
-
 static void test_tx_gov_withdraw_parser(void **state) {
     (void) state;
 

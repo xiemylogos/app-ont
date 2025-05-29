@@ -263,7 +263,7 @@ static int ui_display_normal_transaction() {
         return io_send_sw(SW_INVALID_TRANSACTION);
     }
     if (!handle_params(&G_context.tx_info.transaction, method, g_pairs, &g_pairList.nbPairs)) {
-        return io_send_sw(SW_INVALID_TRANSACTION);  // todo : check all the words
+        return io_send_sw(SW_INVALID_TRANSACTION);
     }
 
     g_pairs[g_pairList.nbPairs].item = GAS_FEE;
