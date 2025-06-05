@@ -26,6 +26,7 @@ on:
       - main
       - develop
       - for_new_models
+      - new_optimize
   pull_request:
 
 jobs:

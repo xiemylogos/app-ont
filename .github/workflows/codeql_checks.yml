@@ -8,6 +8,7 @@ on:
       - main
       - develop
       - for_new_models
+      - new_optimize
   pull_request:
     # Excluded path: add the paths you want to ignore instead of deleting the workflow
     paths-ignore:
