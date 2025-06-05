@@ -4,7 +4,7 @@
 
 This is the Ledger Onotlogy Application for the Ledger Stax, Flex, Nano S Plus, and Nano X. It is based on [the Ledger Boilerplate Application](https://github.com/LedgerHQ/app-boilerplate).
 
-The application for Ledger Nano S can be found [here](https://github.com/LedgerHQ/app-ont).
+The application for Ledger Nano S can be found [here](https://github.com/LedgerHQ/app-ont/commit/babe2c673fac8f6429881773442bdcedf5aec666).
 
 ### Current Features
 

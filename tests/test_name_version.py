@@ -14,5 +14,5 @@ def test_get_app_and_version(backend: BackendInterface) -> None:
     # Use an helper to parse the response, assert the values
     app_name, version = unpack_get_app_and_version_response(response.data)
 
-    assert app_name == "ONT"
+    assert app_name == "Ontology"
     assert version == "2.0.0"
