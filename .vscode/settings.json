@@ -1,6 +1,6 @@
 {
     "ledgerDevTools.appSettings": {
-        "selectedDevice": "Nano S Plus",
+        "selectedDevice": "Nano S",
         "testsList": [
             "test_sign_add_init_pos_tx_short_tx",
             "test_sign_add_init_pos_tx_refused",
@@ -45,8 +45,6 @@
             "test_sign_un_authorize_for_peer_tx_refused",
             "test_sign_withdraw_short_tx",
             "test_sign_withdraw_refused"
-        ],
-        "selectedUseCase": "release",
-        "selectedVariant": "ontology"
+        ]
     }
 }

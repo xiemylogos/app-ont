@@ -32,3 +32,5 @@ doc/latex
 
 # Virtual env for sideload (macOS and Windows)
 ledger/
+.vscode
+.idea
