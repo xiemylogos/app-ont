@@ -107,7 +107,7 @@ static bool convert_params_to_uint128_le(tx_parameter_t *amount,
     }
 
     size_t size64 = sizeof(uint64_t);
-    if (amount->len > 2 * size64 || amount->len == 0) {
+    if (amount->len > 2 * size64 +1 || amount->len == 0) {
         return false;
     }
 
