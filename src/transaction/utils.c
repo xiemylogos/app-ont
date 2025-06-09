@@ -107,7 +107,10 @@ static bool convert_params_to_uint128_le(tx_parameter_t *amount,
     }
 
     size_t size64 = sizeof(uint64_t);
-    if (amount->len > 2 * size64 +1 || amount->len == 0) {
+    if ((amount->type != PARAM_AMOUNT && amount->type != PARAM_UINT128)
+       || (amount->type == PARAM_AMOUNT && (!has_prefix || amount->len > 2 * size64 + 1))
+       || (amount->type == PARAM_UINT128 && (has_prefix || amount->len != 2 * size64 ))
+       || amount->len == 0) {
         return false;
     }
 
@@ -191,7 +194,7 @@ static bool format_fpu128_trimmed(char *dst,
 }
 
 bool convert_param_to_uint64_le(tx_parameter_t *amount, uint64_t *out) {
-    if (amount == NULL || out == NULL) {
+    if (amount == NULL || out == NULL || amount->type != PARAM_AMOUNT) {
         return false;
     }
 
@@ -220,7 +223,8 @@ bool convert_param_amount_to_chars(tx_parameter_t *param,
                      bool has_prefix,
                      char *amount,
                      size_t amount_len) {
-    if (param == NULL || amount == 0) {
+     if (param == NULL || amount == 0
+       || (param->type != PARAM_AMOUNT && param->type != PARAM_UINT128)) {
         return false;
     }
 
