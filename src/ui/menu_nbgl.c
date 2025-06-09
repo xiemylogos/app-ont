@@ -40,7 +40,7 @@ void app_quit(void) {
 //  -----------------------------------------------------------
 #define SETTING_INFO_NB 3
 static const char* const INFO_TYPES[SETTING_INFO_NB] = {"Version", "Developer", "Copyright"};
-static const char* const INFO_CONTENTS[SETTING_INFO_NB] = {APPVERSION, "Ontology Foundation", "(c) 2025 Ontology"};
+static const char* const INFO_CONTENTS[SETTING_INFO_NB] = {APPVERSION, "Ontology Foundation", "(c) 2025 Ledger"};
 
 // settings switches definitions
 enum { BLIND_SIGNNING_SWITCH_TOKEN = FIRST_USER_TOKEN };
